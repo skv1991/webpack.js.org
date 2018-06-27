@@ -15,27 +15,27 @@ contributors:
   - byzyk
 ---
 
-At its core, **webpack** is a _static module bundler_ for modern JavaScript applications. When webpack processes your application, it internally builds a _dependency graph_ which maps every module your project needs and generates one or more _bundles_.
+По сути, **webpack** это _сборщик статических ресурсов модулей_ для современных JavaScript приложений. Когда webpack обрабатывает ваше приложение, он строит внутреннее _дерево зависимостей_, которое отмечает каждый модуль, нужный для проекта и генерирует один или более _бандл_.
 
-T> Learn more about JavaScript modules and webpack modules [here](/concepts/modules).
+T> Узнайте больше о модулях в JavaScript и модулях webpack [здесь](/concepts/modules).
 
-Since version 4, **webpack does not require a configuration file** to bundle your project, nevertheless it is [incredibly configurable](/configuration) to better fit your needs.
+Начиная с версии 4, **webpack не требует файла конфигурации** сборки проекта, тем не менее, он [необычайно гибкий](/configuration) для лучшего соответствия вашм нуждам.
 
-To get started you only need to understand its **Core Concepts**:
+Чтобы приступить к изучению, вам нужно всего лишь понять его **ключевые концепции**:
 
-- Entry
-- Output
-- Loaders
-- Plugins
+- Вход
+- Вывод
+- Загрузчики
+- Плагины
 
-This document is intended to give a **high-level** overview of these concepts, while providing links to detailed concept specific use cases.
+Этот документ предназначен дать вам **обобщенный** обзор данных концепций, предоставляя при этом ссылки на детальные примеры использования концепций в конкретных ситуациях.
 
 
-## Entry
+## Вход
 
-An **entry point** indicates which module webpack should use to begin building out its internal *dependency graph*, webpack will figure out which other modules and libraries that entry point depends on (directly and indirectly).
+**Точка входа** указывает webpack на модуль, который ему нужно использовать для начала построения внутреннего *дерева зависимостей*, webpack определит, от каких остальных библиотек и модулей этот входной модуль зависит (прямо и косвенно).
 
-By default its value is `./src/index.js`, but you can specify a different (or multiple entry points) by configuring the **entry** property in the [webpack configuration](/configuration). For example:
+По-умолчанию, он называется `./src/index.js`, но вы можете указать другой (или множество точек входа) изменяя свойство **entry** в [конфигурации webpack](/configuration). Например:
 
 __webpack.config.js__
 
@@ -45,14 +45,14 @@ module.exports = {
 };
 ```
 
-T> Learn more in the [entry points](/concepts/entry-points) section.
+T> Изучить подробнее можно в разделе [входные точки](/concepts/entry-points).
 
 
-## Output
+## Вывод
 
-The **output** property tells webpack where to emit the *bundles* it creates and how to name these files, it defaults to `./dist/main.js` for the main output file and to the `./dist` folder for any other generated file.
+Свойство **output** сообщает webpack куда складывать создаваемые *бандлы*, и как их именовать, по-умолчанию это `./dist/main.js` для вывода основного файла и в директорию `./dist` будут попадать любые другие сгенерированные файлы.
 
-You can configure this part of the process by specifying an `output` field in your configuration:
+Вы можете настроить эту часть процесса, указав поле `output` в вашей конфигурации:
 
 __webpack.config.js__
 
@@ -68,12 +68,12 @@ module.exports = {
 };
 ```
 
-In the example above, we use the `output.filename` and the `output.path` properties to tell webpack the name of our bundle and where we want it to be emitted to. In case you're wondering about the path module being imported at the top, it is a core [Node.js module](https://nodejs.org/api/modules.html) that gets used to manipulate file paths.
+В примере выше, мы используем свойства `output.filename` и `output.path`, чтобы сообщить webpack имя нашего бандла и куда мы хотим его положить. В случае, если вас удивил модуль path, импортируемый в верхней части, это [модуль ядра Node.js](https://nodejs.org/api/modules.html), который используется для управления путями файлов.
 
-T> The `output` property has [many more configurable features](/configuration/output) and if you like to know more about the concepts behind it, you can [read more in the output section](/concepts/output).
+T> Свойство `output` имеет [намного больше настраиваемых возможностей](/configuration/output) и если вы хотите узнать больше о его концепциях, то можете [прочитать больше в разделе Вывод](/concepts/output).
 
 
-## Loaders
+## Загрузчики
 
 Out of the box, webpack only understands JavaScript files. **Loaders** allow webpack to process other types of files and converting them into valid [modules](/concepts/modules) that can be consumed by your application and added to the dependency graph.
 
