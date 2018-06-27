@@ -1,22 +1,23 @@
 ---
-title: Output
+title: Вывод
 sort: 3
 contributors:
   - TheLarkInn
   - chyipin
   - rouzbeh84
   - byzyk
+  - skv1991
 ---
 
-Configuring the `output` configuration options tells webpack how to write the compiled files to disk. Note that, while there can be multiple `entry` points, only one `output` configuration is specified.
+Настройка свойства `output` в конфигурации сообщает webpack как записывать на диск скомпилированные файлы. Обратите внимание, что в то время, как входных точек в `entry` может быть много, в конфигурации указывается только одна точка вывода в `output`.
 
 
-## Usage
+## Использование
 
-The minimum requirements for the `output` property in your webpack config is to set its value to an object including the following two things:
+Минимальными требованиями для свойства `output` в конфигурации webpack является присвоение объекта в качестве значения, включая следующие два свойства:
 
-- A `filename` to use for the output file(s).
-- An absolute `path` to your preferred output directory.
+- `filename` для указания имени файла(ов), получаемого на выходе.
+- `path` для абсолютного пути к нужной директории, куда хотите положить файл(ы).
 
 **webpack.config.js**
 
@@ -29,12 +30,12 @@ module.exports = {
 };
 ```
 
-This configuration would output a single `bundle.js` file into the `/home/proj/public/assets` directory.
+Эта конфигурация на выходе создаст один файл `bundle.js` в директории `/home/proj/public/assets`.
 
 
-## Multiple Entry Points
+## Множество точек входа
 
-If your configuration creates more than a single "chunk" (as with multiple entry points or when using plugins like CommonsChunkPlugin), you should use [substitutions](/configuration/output#output-filename) to ensure that each file has a unique name.
+Если ваша конфигурация создает больше одного "куска" кода (как с множественными точками входа, или когда используется плагин вроде CommonsChunkPlugin), то нужно использовать [подстановки](/configuration/output#output-filename) чтобы быть уверенным, что каждый файл имеет уникальное имя.
 
 ```javascript
 module.exports = {
@@ -48,13 +49,13 @@ module.exports = {
   }
 };
 
-// writes to disk: ./dist/app.js, ./dist/search.js
+// запишет на диск: ./dist/app.js, ./dist/search.js
 ```
 
 
-## Advanced
+## Продвинутый пример
 
-Here's a more complicated example of using a CDN and hashes for assets:
+Вот более сложный пример использования CDN и хэшей для ресурсов:
 
 **config.js**
 
@@ -68,10 +69,10 @@ module.exports = {
 };
 ```
 
-In cases where the eventual `publicPath` of output files isn't known at compile time, it can be left blank and set dynamically at runtime via the `__webpack_public_path__` variable in the entry point file:
+В случаях, где `publicPath` может выводить файлы, о которых webpack не знает во время компиляции, оно может быть оставлено пустым и установлено динамически во время запуска через переменную `__webpack_public_path__` в файле входной точки в проект:
 
 ```javascript
 __webpack_public_path__ = myRuntimePublicPath;
 
-// rest of your application entry
+// остальная часть входа в приложение
 ```
