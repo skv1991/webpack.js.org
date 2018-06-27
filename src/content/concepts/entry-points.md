@@ -1,18 +1,19 @@
 ---
-title: Entry Points
+title: Точки входа
 sort: 2
 contributors:
   - TheLarkInn
   - chrisVillanueva
   - byzyk
+  - skv1991
 ---
 
-As mentioned in [Getting Started](/guides/getting-started/#using-a-configuration), there are multiple ways to define the `entry` property in your webpack configuration. We will show you the ways you **can** configure the `entry` property, in addition to explaining why it may be useful to you.
+Как упоминалось в [Приступаем к работе](/guides/getting-started/#using-a-configuration), есть множество способов определить свойство `entry` в вашей конфигурации webpack. Мы покажем вам способы, как вы **можете** настроить свойство `entry`, в дополнение к объяснению, почему это может быть полезно для вас.
 
 
-## Single Entry (Shorthand) Syntax
+## Синтаксис одиночной точки входа (короткая запись)
 
-Usage: `entry: string|Array<string>`
+Использование: `entry: string|Array<string>`
 
 **webpack.config.js**
 
@@ -22,7 +23,7 @@ module.exports = {
 };
 ```
 
-The single entry syntax for the `entry` property is a shorthand for:
+Синтаксис одиночной точки входа для свойства `entry` это короткая запись следующего:
 
 ```javascript
 module.exports = {
@@ -32,37 +33,14 @@ module.exports = {
 };
 ```
 
-T> **What happens when you pass an array to `entry`?** Passing an array of file paths to the `entry` property creates what is known as a **"multi-main entry"**. This is useful when you would like to inject multiple dependent files together and graph their dependencies into one "chunk".
+T> **Что случится, если передать в `entry` массив?** Передача массива путей к файлам в свойство `entry` создаст то, что называется **"множественная основная точка входа"**. Этот подход удобен, когда вы хотите внедрить множество зависимых файлов вместе и собрать их зависимости в один "кусок".
 
-This is a great choice when you are looking to quickly setup a webpack configuration for an application or tool with one entry point (IE: a library). However, there is not much flexibility in extending or scaling your configuration with this syntax.
-
-
-## Object Syntax
-
-Usage: `entry: {[entryChunkName: string]: string|Array<string>}`
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  entry: {
-    app: './src/app.js',
-    vendors: './src/vendors.js'
-  }
-};
-```
-
-The object syntax is more verbose. However, this is the most scalable way of defining entry/entries in your application.
-
-T> **"Scalable webpack configurations"** are ones that can be reused and combined with other partial configurations. This is a popular technique used to separate concerns by environment, build target and runtime. They are then merged using specialized tools like [webpack-merge](https://github.com/survivejs/webpack-merge).
+Это отличный выбор, когда вы ищете способ настроить конфигурацию webpack для приложения или инструмента с одной точкой входа (например: библиотеки). Однако, не так много гибкости в расширении и масштабировании вашей конфигурации, используя такой синтаксис.
 
 
-## Scenarios
+## Синтаксис объекта
 
-Below is a list of entry configurations and their real-world use cases:
-
-
-### Separate App and Vendor Entries
+Использование: `entry: {[entryChunkName: string]: string|Array<string>}`
 
 **webpack.config.js**
 
@@ -75,14 +53,37 @@ module.exports = {
 };
 ```
 
-**What does this do?** At face value this tells webpack to create dependency graphs starting at both `app.js` and `vendors.js`. These graphs are completely separate and independent of each other (there will be a webpack bootstrap in each bundle). This is commonly seen with single page applications which have only one entry point (excluding vendors).
+Синтаксис объекта более подробный. Однако, этот способ наиболее масштабируемый в плане определения точки/точек входа в ваше приложение.
 
-**Why?** This setup allows you to leverage `CommonsChunkPlugin` and extract any vendor references from your app bundle into your vendor bundle, replacing them with `__webpack_require__()` calls. If there is no vendor code in your application bundle, then you can achieve a common pattern in webpack known as [long-term vendor-caching](/guides/caching).
-
-?> Consider removing this scenario in favor of the DllPlugin, which provides a better vendor-splitting.
+T> **"Масштабируемые конфигурации webpack"** являются такими, которые можно повторно использовать и комбинировать с другими частичными конфигурациями. Это распространенная техника, используемая для распределения забот по разным окружениям, и направлена на сборку и на запуск при разработке. А затем они соединяются, используя специальные инструменты, вроде [webpack-merge](https://github.com/survivejs/webpack-merge).
 
 
-### Multi Page Application
+## Сценарии
+
+Ниже описан список конфигураций для точки входа и их реальные примеры использования:
+
+
+### Разделение точек входа в приложение и vendor
+
+**webpack.config.js**
+
+```javascript
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    vendors: './src/vendors.js'
+  }
+};
+```
+
+**Что делает?** Номинально, это сообщает webpack о создании дерева зависимостей, начиная, как с `app.js` так и с `vendors.js`. Эти деревья полностью разделены и не зависимы друг от друга (в каждом бандле будет свое обертка webpack). Такое обычно наблюдается в одностраничных приложениях, у которых только одна точка входа (исключая vendors).
+
+**Почему?** Такая настройка позволяет задействовать `CommonsChunkPlugin` и извлечь любые запрашиваемые vendor-файлы из бандла вашего приложения в бандл vendor-файлов, заменяя их на вызовы `__webpack_require__()`. Если в бандле вашего приложения не используется код vendor-библиотек, то вы можете получить типичный паттерн в webpack, известный как [long-term vendor-caching](/guides/caching).
+
+?> Рассмотрите возможность отказа от этого сценария в пользу DllPlugin, который обеспечивает лучшее разделение vendor-библиотек.
+
+
+### Многостраничное приложение
 
 **webpack.config.js**
 
@@ -96,10 +97,10 @@ module.exports = {
 };
 ```
 
-**What does this do?** We are telling webpack that we would like 3 separate dependency graphs (like the above example).
+**Что делает?** Мы сообщаем webpack, что хотим иметь 3 отдельных графа зависимостей (как в примере выше).
 
-**Why?** In a multi-page application, the server is going to fetch a new HTML document for you. The page reloads this new document and assets are redownloaded. However, this gives us the unique opportunity to do multiple things:
+**Почему?** В многостраничном приложении, сервер будет отправлять вам новый HTML-документ. Страница будет перезагружена для этого документа, и будут загружены его ресурсы. Однако, это дает нам уникальную возможность сделать несколько вещей:
 
-- Use `CommonsChunkPlugin` to create bundles of shared application code between each page. Multi-page applications that reuse a lot of code/modules between entry points can greatly benefit from these techniques, as the amount of entry points increase.
+- Использовать `CommonsChunkPlugin` для создания бандлов, содержащих общий для каждой страницы код приложения. Многостраничные приложения, которые повторно используют множество кода/модулей между разными точками входа могут быть от этой техники в значительном выигрыше, по мере увеличения количества точек входа.
 
-T> As a rule of thumb: for each HTML document use exactly one entry point.
+T> Правилом хорошего тона является: использование всего одной точки входа для каждого HTML документа.
