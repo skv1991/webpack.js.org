@@ -1,5 +1,5 @@
 ---
-title: Targets
+title: Цели
 sort: 10
 contributors:
   - TheLarkInn
@@ -7,15 +7,16 @@ contributors:
   - johnstew
   - srilman
   - byzyk
+  - skv1991
 ---
 
-Because JavaScript can be written for both server and browser, webpack offers multiple deployment _targets_ that you can set in your webpack [configuration](/configuration).
+Поскольку JavaScript может быть написан и для сервера и для браузера, webpack представляет множество _целей_ для развертки, которые можно настроить в вашей [конфигурации](/configuration) webpack.
 
-W> The webpack `target` property is not to be confused with the `output.libraryTarget` property. For more information see [our guide](/concepts/output) on the `output` property.
+W> Свойство `target` в конфигурации webpack не стоит путать со свойством `output.libraryTarget`. Чтобы узнать больше, смотри [наш гайд](/concepts/output) по свойству `output`.
 
-## Usage
+## Использование
 
-To set the `target` property, you simply set the target value in your webpack config:
+Для установки свойства `target`, вы просто устанавливаете его значение в конфигурации webpack:
 
 **webpack.config.js**
 
@@ -25,15 +26,15 @@ module.exports = {
 };
 ```
 
-In the example above, using `node` webpack will compile for usage in a Node.js-like environment (uses Node.js `require` to load chunks and not touch any built in modules like `fs` or `path`).
+В примере выше, используя `node` webpack будет осуществлять компиляцию под использование в Node.js-подобном окружении (использует Node.js метод `require` для загрузки кусков и не трогает никаких встроенных модулей вроде `fs` или `path`).
 
-Each _target_ has a variety of deployment/environment specific additions, support to fit its needs. See what [targets are available](/configuration/target).
+Каждая _цель_ имеет различные добавления для развертывания/окружения, поддерживаемых для для удовлетворения своих потребностей. Ознакомьтесь с [доступными целями](/configuration/target).
 
-?>Further expansion for other popular target values
+?>Дальнейшее расширение для других популярных значений в целях
 
 ## Multiple Targets
 
-Although webpack does **not** support multiple strings being passed into the `target` property, you can create an isomorphic library by bundling two separate configurations:
+Хоть webpack и **не** поддерживает передачу множества строк в свойство `target`, вы можете создать изоморфную библиотеку путем объединения двух отдельных конфигураций:
 
 **webpack.config.js**
 
@@ -49,7 +50,7 @@ const serverConfig = {
 };
 
 const clientConfig = {
-  target: 'web', // <=== can be omitted as default is 'web'
+  target: 'web', // <=== может быть опущено, так как по-умолчанию значение 'web'
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'lib.js'
@@ -60,13 +61,13 @@ const clientConfig = {
 module.exports = [ serverConfig, clientConfig ];
 ```
 
-The example above will create a `lib.js` and `lib.node.js` file in your `dist` folder.
+Пример выше создаст `lib.js` и `lib.node.js` файлы в вашей директории `dist`.
 
-## Resources
+## Ресурсы
 
-As seen from the options above there are multiple different deployment _targets_ that you can choose from. Below is a list of examples, and resources that you can refer to.
+Как видно из опций выше, есть несколько различных _целей_ для разворачивания проекта, из которых можно выбрать. Ниже представлен список примеров, и ресурсов на которые можно ссылаться.
 
-*  **[compare-webpack-target-bundles](https://github.com/TheLarkInn/compare-webpack-target-bundles)**: A great resource for testing and viewing different webpack _targets_. Also great for bug reporting.
-* **[Boilerplate of Electron-React Application](https://github.com/chentsulin/electron-react-boilerplate)**: A good example of a build process for electron's main process and renderer process.
+*  **[compare-webpack-target-bundles](https://github.com/TheLarkInn/compare-webpack-target-bundles)**: Отличный ресурс для тестирования и просмотра различных _целей_ в webpack. Так же отлично для сообщения об ошибках.
+* **[Boilerplate of Electron-React Application](https://github.com/chentsulin/electron-react-boilerplate)**: Хороший пример сборки основного процесса и рендеринга в Electron.
 
-?> Need to find up to date examples of these webpack targets being used in live code or boilerplates.
+?> Необходимо найти свежие примеры таких целей в webpack, которые используются в реальных проектах или шаблонах.
