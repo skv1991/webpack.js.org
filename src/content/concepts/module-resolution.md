@@ -1,24 +1,25 @@
 ---
-title: Module Resolution
+title: Распознавание модулей
 sort: 8
 contributors:
   - pksjce
   - pastelsky
   - byzyk
+  - skv1991
 ---
 
-A resolver is a library which helps in locating a module by its absolute path.
-A module can be required as a dependency from another module as:
+Распознаватель (англ. resolver) это библиотека, помогающая найти расположение модуля по его абсолютному пути.
+Модуль может быть подключен, как зависимость из другого модуля, например:
 
 ```js
 import foo from 'path/to/module';
-// or
+// или
 require('path/to/module');
 ```
 
-The dependency module can be from the application code or a third party library. The resolver helps
-webpack find the module code that needs to be included in the bundle for every such `require`/`import` statement.
-webpack uses [enhanced-resolve](https://github.com/webpack/enhanced-resolve) to resolve file paths while bundling modules.
+Модуль зависимости может быть из кода приложения или библиотек третьих лиц. Распознаватель помогает
+webpack найти код модуля,  который нужно включить в бандл для каждой конструкции вроде `require`/`import`.
+webpack использует [enhanced-resolve](https://github.com/webpack/enhanced-resolve) для распознавания путей файлов при сборке модулей.
 
 
 ## Resolving rules in webpack
