@@ -75,14 +75,14 @@ T> Свойство `output` имеет [намного больше настр�
 
 ## Загрузчики
 
-Out of the box, webpack only understands JavaScript files. **Loaders** allow webpack to process other types of files and converting them into valid [modules](/concepts/modules) that can be consumed by your application and added to the dependency graph.
+Из коробки, webpack понимает лишь JavaScript файлы. **Загрузчики** (англ. loaders) позволяют webpack обрабатывать другие типы файлов и конвертировать их в соответствующие [моудли](/concepts/modules), которые будут поглащены вашим приложением и добавлены в дерево зависимостей.
 
-W> Note that the ability to `import` any type of module, e.g. `.css` files, is a feature specific to webpack and may not be supported by other bundlers or task runners. We feel this extension of the language is warranted as it allows developers to build a more accurate dependency graph.
+W> Обратите внимание, что возможность делать `import` любого типа файлов, например `.css` файлов, это возможность webpack и она может не поддерживаться другими сборщиками или менеджерами задач. Мы чувствуем, что такое расширение языка оправдано, потому что позволяет разработчикам строить более точное дерево зависимостей.
 
-At a high level, **loaders** have two properties in your webpack configuration:
+Грубо говоря, у **loaders** есть два свойства в конфигурации webpack:
 
-1. The `test` property identifies which file or files should be transformed.
-2. The `use` property indicates which loader should be used to do the transforming.
+1. Свойство `test` указывает какой тип файла или файлов должен быть трансформирован.
+2. Свойство `use` указывает, какой загрузчик должен использоваться для выполнения трансформации.
 
 __webpack.config.js__
 
@@ -101,28 +101,28 @@ module.exports = {
 };
 ```
 
-The configuration above has defined a `rules` property for a single module with two required properties: `test` and `use`. This tells webpack's compiler the following:
+Конфигурация выше определяет свойство `rules` (правила) для отдельного модуля с двумя обязательными свойствами: `test` и `use`. Это сообщает компилятору webpack следующее:
 
-> "Hey webpack compiler, when you come across a path that resolves to a '.txt' file inside of a `require()`/`import` statement, **use** the `raw-loader` to transform it before you add it to the bundle."
+> "Эй, компилятор webpack, когда ты встретишь путь, соответствующий файлу с расширением '.txt' в конструкции `require()`/`import`, **use** (используй) загрузчик `raw-loader` для его трансформации перед добавлением в бандл."
 
-W> It is important to remember that when defining rules in your webpack config, you are defining them under `module.rules` and not `rules`. For your benefit, webpack will warn you if this is done incorrectly.
+W> Важно запомнить, что при объявлении правил в конфигурации webpack, нужно описывать их в свойстве `module.rules`, а не просто в `rules`. Для вашего блага, webpack сообщит, если это было сделано некорректно.
 
-You can check further customization when including loaders in the [loaders section](/concepts/loaders).
+Вы можете посмотреть дальнейшую персонализацию при подключении загрузчиков в [разделе загрузчики](/concepts/loaders).
 
 
-## Plugins
+## Плагины
 
-While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, assets management and injection of environment variables.
+В то время, как загрузчики используются для трансформации конкретных типов модулей, плагины могут зайдествоваться для выполнения более широкого спектра задач, вроде оптимизации бандлов, управления ресурсами и внедрения переменных окружения.
 
-T> Check out the [plugin interface](/api/plugins) and how to use it to extend webpacks capabilities.
+T> Ознакомьтесь с [интерфейсом плагинов](/api/plugins) и их использованием для расширения возможностей webpack.
 
-In order to use a plugin, you need to `require()` it and add it to the `plugins` array. Most plugins are customizable through options. Since you can use a plugin multiple times in a config for different purposes, you need to create an instance of it by calling it with the `new` operator.
+Для использования плагина, вам нужно подключить плагин используя функцию `require()` и добавить его в массив `plugins`. Большинство плагинов можно настроить через опции. Поскольку вы можете использовать плагин множество раз в конфигурации для разных нужды, нужно создать экземпляр плагина, вызвав его с оператором `new`.
 
 **webpack.config.js**
 
 ```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-const webpack = require('webpack'); //to access built-in plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //установлено с помощью npm
+const webpack = require('webpack'); //для доступа к встроенным плагинам
 
 module.exports = {
   module: {
@@ -136,16 +136,16 @@ module.exports = {
 };
 ```
 
-In the example above, the `html-webpack-plugin` generates an html file for your application injecting automatically all your generated bundles.
+В примере выше, плагин `html-webpack-plugin` генерирует html-файл для вашего приложения и автоматически внедряет в него все ваши сгенерированные бандлы.
 
-T> There are many plugins that webpack provides out of the box! Check out the [list of plugins](/plugins).
+T> Есть множество плагинов, которые webpack предосталвяет прямо из коробки! Ознакомьтесь со [списком плагинов](/plugins).
 
-Using plugins in your webpack config is straightforward - however, there are many use cases that are worth further exploration, [learn more about them here](/concepts/plugins).
+Использовать плагины в конфигурации webpack достаточно просто - однако, есть множество случаев использования, которые заслуживают более детального изучаения, [подробнее ознакомиться можно здесь](/concepts/plugins).
 
 
-## Mode
+## Режим
 
-By setting the `mode` parameter to either `development`, `production` or `none`, you can enable webpack's built-in optimizations that correspond to each environment. The default value is `production`.
+Устанавливая параметр `mode` на `development` (разработка), `production` (продакшен) или `none` (отсутствует), вы можете включить встроенную в webpack оптимизацию, которая будет соответствовать каждому окружению. По-умолчанию применяется значение `production`.
 
 ```javascript
 module.exports = {
@@ -153,9 +153,9 @@ module.exports = {
 };
 ```
 
-Learn more about the [mode configuration here](/concepts/mode) and what optimizations take place on each value.
+Узнайте больше о [конфигурации режимов здесь](/concepts/mode) и какая оптимизация выполняется для каждого из значений.
 
 
-## Browser Compatibility
+## Совместимость с браузерами
 
 webpack supports all browsers that are [ES5-compliant](https://kangax.github.io/compat-table/es5/) (IE8 and below are not supported). webpack needs `Promise` for `import()` and `require.ensure()`. If you want to support older browsers, you will need to [load a polyfill](/guides/shimming/) before using these expressions.
