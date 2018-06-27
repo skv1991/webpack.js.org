@@ -1,20 +1,21 @@
 ---
-title: Mode
+title: Режим
 sort: 4
 contributors:
   - EugeneHlushko
   - byzyk
+  - skv1991
 ---
 
-Providing the `mode` configuration option tells webpack to use its built-in optimizations accordingly.
+Предоставление опции `mode` в конфигурации сообщает webpack использовать соответствующие встроенные методы оптимизации.
 
 `string`
 
-T> The default value for `mode` is `production`.
+T> Значением по-умолчанию для свойства `mode` является `production`.
 
-## Usage
+## Использование
 
-Just provide the `mode` option in the config:
+Просто предоставьте опцию `mode` в конфигурации:
 
 ```javascript
 module.exports = {
@@ -23,23 +24,23 @@ module.exports = {
 ```
 
 
-or pass it as a [CLI](/api/cli/) argument:
+или передайте его, как аргумент в [CLI](/api/cli/):
 
 ```bash
 webpack --mode=production
 ```
 
-The following string values are supported:
+Поддерживаются следующие строковые значения:
 
-Option                | Description
+Опция                 | Описание
 --------------------- | -----------------------
-`development`         | Provides `process.env.NODE_ENV` with value `development`. Enables `NamedChunksPlugin` and `NamedModulesPlugin`.
-`production`          | Provides `process.env.NODE_ENV` with value `production`. Enables `FlagDependencyUsagePlugin`, `FlagIncludedChunksPlugin`, `ModuleConcatenationPlugin`, `NoEmitOnErrorsPlugin`, `OccurrenceOrderPlugin`, `SideEffectsFlagPlugin` and `UglifyJsPlugin`.
-`none`                | Opts out of any default optimization options
+`development`         | Предоставляет `process.env.NODE_ENV` со значением `development`. Включает `NamedChunksPlugin` и `NamedModulesPlugin`.
+`production`          | Предоставляет `process.env.NODE_ENV` со значением `production`. Включает `FlagDependencyUsagePlugin`, `FlagIncludedChunksPlugin`, `ModuleConcatenationPlugin`, `NoEmitOnErrorsPlugin`, `OccurrenceOrderPlugin`, `SideEffectsFlagPlugin` и `UglifyJsPlugin`.
+`none`                | Отклоняет любые опции оптимизации по-умолчанию
 
-If not set, webpack sets `production` as the default value for `mode`. The supported values for mode are:
+Если не указано, webpack установит `production` как значение по-умолчанию для `mode`. Поддерживаемыми значениями для mode являются:
 
-T> Please remember that setting `NODE_ENV` doesn't automatically set `mode`.
+T> Пожалуйста, запомните, что установка переменной окружения `NODE_ENV` автоматически не задаст значение для `mode`.
 
 
 ### Mode: development
@@ -86,7 +87,7 @@ module.exports = {
 }
 ```
 
-If you want to change the behavior according the **mode** variable inside the *webpack.config.js* you have to export a function instead of an object:
+Если вы хотите изменить поведение в соответствии с переменной **mode** в *webpack.config.js* вам нужно экспортировать функцию вместо объекта:
 
 ```javascript
 var config = {
