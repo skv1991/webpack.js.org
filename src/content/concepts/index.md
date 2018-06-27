@@ -158,4 +158,4 @@ module.exports = {
 
 ## Совместимость с браузерами
 
-webpack supports all browsers that are [ES5-compliant](https://kangax.github.io/compat-table/es5/) (IE8 and below are not supported). webpack needs `Promise` for `import()` and `require.ensure()`. If you want to support older browsers, you will need to [load a polyfill](/guides/shimming/) before using these expressions.
+webpack поддерживает все бразуеры, которые [совместимы с ES5](https://kangax.github.io/compat-table/es5/) (IE8 и ниже не поддерживаются). webpack требует `Promise` для функции `import()` и `require.ensure()`. Если вы хотите осуществлять поддержку более старых браузеров, то нужно [загрузить полифилл](/guides/shimming/) до использования выражения.
