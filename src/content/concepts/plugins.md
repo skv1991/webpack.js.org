@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: Плагины
 sort: 5
 contributors:
   - TheLarkInn
@@ -7,16 +7,17 @@ contributors:
   - rouzbeh84
   - johnstew
   - byzyk
+  - skv1991
 ---
 
-**Plugins** are the [backbone](https://github.com/webpack/tapable) of webpack. webpack itself is built on the **same plugin system** that you use in your webpack configuration!
+**Плагины** являются [фундаментом](https://github.com/webpack/tapable) webpack. webpack сам построен на **той же системе плагинов**, что вы используете в своей конфигурации webpack!
 
-They also serve the purpose of doing **anything else** that a [loader](/concepts/loaders) cannot do.
+Они так же служат для тех ситуаций, когда нужно сделать **что-то ещё**, что [загрузчик](/concepts/loaders) не может.
 
 
-## Anatomy
+## Анатомия
 
-A webpack **plugin** is a JavaScript object that has an [`apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) method. This `apply` method is called by the webpack compiler, giving access to the **entire** compilation lifecycle.
+**Плагин** в webpack это JavaScript объект, который имеет метод [`apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply). Этот метод `apply` вызывается компилятором webpack, пердоставляя доступ к **всему** жизненному циклу процесса компиляции.
 
 __ConsoleLogOnBuildWebpackPlugin.js__
 
@@ -26,28 +27,28 @@ const pluginName = 'ConsoleLogOnBuildWebpackPlugin';
 class ConsoleLogOnBuildWebpackPlugin {
   apply(compiler) {
     compiler.hooks.run.tap(pluginName, compilation => {
-      console.log('The webpack build process is starting!!!');
+      console.log('Процесс сборки webpack начался!!!');
     });
   }
 }
 ```
 
-First parameter of the tap method of the compiler hook should be a camelized version of the plugin name. It is advisable to use a constant for this so it can be reused in all hooks.
+Первый параметр метода tap в хуках компилятора должен быть camel-case версией имени плагина. Для этого целесообразно использовать константу, чтобы ее можно было повторно использовать во всех хуках.
 
-## Usage
+## Использование
 
-Since **plugins** can take arguments/options, you must pass a `new` instance to the `plugins` property in your webpack configuration.
+Поскольку **плагины** могут принимать аргументы/опции, вы должны передать новый экземпляр (используя оператор `new`) в свойство `plugins` конфигурации webpack.
 
-Depending on how you are using webpack, there are multiple ways to use plugins.
+В зависимости от того, как вы используете webpack, есть множество способов использовать плагины.
 
 
-### Configuration
+### Конфимгурация
 
 __webpack.config.js__
 
 ```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-const webpack = require('webpack'); //to access built-in plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //установлено через npm
+const webpack = require('webpack'); //для доступа к встроенным плагинам
 const path = require('path');
 
 module.exports = {
@@ -73,12 +74,12 @@ module.exports = {
 
 ### Node API
 
-?> Even when using the Node API, users should pass plugins via the `plugins` property in the configuration. Using `compiler.apply` should not be the recommended way.
+?> Даже когда используется Node API, пользователи должны передавать плагины через свойства `plugins` в конфигурации. Использование `compiler.apply` не является рекомендуемым способом.
 
 __some-node-script.js__
 
 ```javascript
-const webpack = require('webpack'); //to access webpack runtime
+const webpack = require('webpack'); //для доступа к webpack во время выполнения
 const configuration = require('./webpack.config.js');
 
 let compiler = webpack(configuration);
@@ -89,4 +90,4 @@ compiler.run(function(err, stats) {
 });
 ```
 
-T> Did you know: The example seen above is extremely similar to the [webpack runtime itself!](https://github.com/webpack/webpack/blob/e7087ffeda7fa37dfe2ca70b5593c6e899629a2c/bin/webpack.js#L290-L292) There are lots of great usage examples hiding in the [webpack source code](https://github.com/webpack/webpack) that you can apply to your own configurations and scripts!
+T> Знали ли вы: Что пример выше очень сильно схож с [самим webpack при выполнении](https://github.com/webpack/webpack/blob/e7087ffeda7fa37dfe2ca70b5593c6e899629a2c/bin/webpack.js#L290-L292)! Есть множество отличных примеров использования, спрятанных внутри [исходного кода webpack](https://github.com/webpack/webpack), которые вы можете применять к своей конфигурации и скриптам!
