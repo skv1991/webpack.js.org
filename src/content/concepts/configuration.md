@@ -1,34 +1,35 @@
 ---
-title: Configuration
+title: Конфигурация
 sort: 6
 contributors:
 - TheLarkInn
 - simon04
+- skv1991
 ---
 
-You may have noticed that few webpack configurations look exactly alike. This is because **webpack's configuration file is a JavaScript file that exports an object.** This object is then processed by webpack based upon its defined properties.
+Вы могли заметить, что несколько конфигураций webpack выглядят очень похоже. Все потому, что **файл конфигурации webpack это JavaScript файл, экспортирующий объект.** Затем этот объект обрабатывается webpack на основе определенных в нем свойств.
 
-Because it's a standard Node.js CommonJS module, you **can do the following**:
+Поскольку это стандартный модуль CommonJS в Node.js, вы **можете делать следующее**:
 
-* import other files via `require(...)`
-* use utilities on npm via `require(...)`
-* use JavaScript control flow expressions i. e. the `?:` operator
-* use constants or variables for often used values
-* write and execute functions to generate a part of the configuration
+* импортировать другие файлы через `require(...)`
+* использовать утилиты npm через `require(...)`
+* использовать операторы управления потоком из JavaScript, например оператор `?:`
+* использовать константы или переменные для часто используемых значений
+* писать и выполнять функции для генерации части конфигурации
 
-Use these features when appropriate.
+Используйте эти функции по-необходимости.
 
-While they are technically feasible, **the following practices should be avoided**:
+Хоть это и осуществимо с технической точки, **нужно избегать следующих подходов**:
 
-* Access CLI arguments, when using the webpack CLI (instead write your own CLI, or [use `--env`](/configuration/configuration-types/))
-* Export non-deterministic values (calling webpack twice should result in the same output files)
-* Write long configurations (instead split the configuration into multiple files)
+* Доступ к аргументам CLI, используя webpack CLI (вместо этого, напишите свой CLI, или [используйте `--env`](/configuration/configuration-types/))
+* Экспортировать неопределенные значения (вызывая webpack дважды, на выходе должны получаться те же файлы)
+* Писать длинные конфигурации (вместо этого разделите конфигурацию на несколько файлов)
 
-T> The most important part to take away from this document is that there are many different ways to format and style your webpack configuration. The key is to stick with something consistent that you and your team can understand and maintain.
+T> Самым важным, что следует вынести с этой странички является то, что существует множество способов форматирования и стилистики написания конфигурации к webpack. Ключевым является придерживаться чего-то последовательного, что вы и ваша команда сможете понимать и поддерживать.
 
-The following examples below describe how webpack's configuration object can be both expressive and configurable because _it is code_:
+Следующие примеры ниже описывают как объект конфигурации webpack может быть одновременно выразительным и настраиваемым, потому что _это код_:
 
-## Simple Configuration
+## Простая конфигурация
 
 **webpack.config.js**
 
@@ -45,12 +46,12 @@ module.exports = {
 };
 ```
 
-## Multiple Targets
+## Множество целей
 
-_See_: [Exporting multiple configurations](/configuration/configuration-types/#exporting-multiple-configurations)
+_Смотри_: [Экспорт множества конфигураций](/configuration/configuration-types/#exporting-multiple-configurations)
 
-## Using other Configuration Languages
+## Используя другие языки конфигурации
 
-webpack accepts configuration files written in multiple programming and data languages.
+webpack принимает конфигурационные файлы, написанные на множестве языков программирования и данных.
 
-_See_: [Configuration Languages](/configuration/configuration-languages/)
+_Смотри_: [Языки конфигурации](/configuration/configuration-languages/)
