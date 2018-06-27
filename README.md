@@ -3,7 +3,7 @@
 [![Build Status][13]][10]
 [![Standard Version][12]][11]
 
-Guides, documentation, and all things webpack.
+Гайды, документация, и остальное для webpack.
 
 
 ## Content Progress
@@ -21,27 +21,27 @@ We haven't created issues for the other sections yet, but they will be coming
 soon. For dev-related work please see [General - Updates & Fixes][3].
 
 
-## Translation
+## Перевод
 
-To help translate this documentation please jump to the [translate branch][4].
-
-
-## Contributing
-
-Read through the [writer's guide][7] if you're interested in editing the
-content on this site. See the [contributors page][5] to learn how to set up and
-start working on the site locally.
+Чтобы помочь с переводом данной документации, пожалуйста, перейдите в [ветку перевода][4].
 
 
-## License
+## Участие
 
-The content is available under the [Creative Commons BY 4.0][6] license.
+Прочитайте [writer's guide][7], если вы заинтересованы в редактировании
+контента на этом сайте. Смотри [страницу contributors][5], чтобы узнать, как настроить и
+начать работу над сайтом локально.
 
 
-## Special Thanks
+## Лицензия
 
-_BrowserStack_ has graciously allowed us to do cross-browser and cross-os
-testing of the site at no cost...
+Контент доступен по лицензии [Creative Commons BY 4.0][6].
+
+
+## Отдельные благодарности
+
+_BrowserStack_ любезно позволил нам производить кросс-браузерное и мультиплатформенное
+тестирование нашего сайта на безвозмездной основе...
 
 [![BrowserStackLogo](./browserstack-logo.png)][9]
 
