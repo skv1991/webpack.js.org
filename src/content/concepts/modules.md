@@ -1,41 +1,42 @@
 ---
-title: Modules
+title: Модули
 sort: 7
 contributors:
   - TheLarkInn
   - simon04
   - rouzbeh84
+  - skv1991
 related:
    - title: JavaScript Module Systems Showdown
      url: https://auth0.com/blog/javascript-module-systems-showdown/
 ---
 
-In [modular programming](https://en.wikipedia.org/wiki/Modular_programming), developers break programs up into discrete chunks of functionality called a _module_.
+в [модульном программировании](https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5), разработчики разбивают программы на отдельные кусочки функционала, называемые _модули_.
 
-Each module has a smaller surface area than a full program, making verification, debugging, and testing trivial.
-Well-written _modules_ provide solid abstractions and encapsulation boundaries, so that each module has a coherent design and a clear purpose within the overall application.
+Каждый модуль имеет меньшую рабочую область, чем целая программа, делая проверку, отладку, и тестирование тривиальным.
+Хорошо написанные _модули_ предоставляют твердые абстракции и границы инкапсуляции, так каждый модуль имеет связанный дизайн и четкое назначение в общем приложении.
 
-Node.js has supported modular programming almost since its inception.
-On the web, however, support for _modules_ has been slow to arrive.
-Multiple tools exist that support modular JavaScript on the web, with a variety of benefits and limitations.
-webpack builds on lessons learned from these systems and applies the concept of _modules_ to any file in your project.
+Node.js поддерживает модульное программирование почти что с момента создания.
+Однако до веб, поддержка _модулей_ добирается очень долго.
+Существует множество инструментов в веб, поддерживающих модульный JavaScript, с различными преимуществами и ограничениями.
+webpack построен на основе опыта, полученного из этих систем, и применяет _модульную_ концепцию к любому файлу в вашем проекте.
 
-## What is a webpack Module
+## Что такое Модуль в webpack
 
-In contrast to [Node.js modules](https://nodejs.org/api/modules.html), webpack _modules_ can express their _dependencies_ in a variety of ways. A few examples are:
+В сравнении с [модулями Node.js](https://nodejs.org/api/modules.html), _модули_ webpack могут выражать их _зависимости_ различными способами. Вот несколько примеров:
 
-* An [ES2015 `import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statement
-* A [CommonJS](http://www.commonjs.org/specs/modules/1.0/) `require()` statement
-* An [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md) `define` and `require` statement
-* An [`@import` statement](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) inside of a css/sass/less file.
-* An image url in a stylesheet (`url(...)`) or html (`<img src=...>`) file.
+* Функция [`import` стандарта ES2015](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* Функция `require()`из [CommonJS](http://www.commonjs.org/specs/modules/1.0/)
+* Функции `define` и `require` из [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)
+* Функция [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) внутри css/sass/less файлов.
+* Ссылка на картинку в каскадных таблицах стилей (`url(...)`) или html-тег картинки (`<img src=...>`).
 
-T> webpack 1 requires a specific loader to convert ES2015 `import`, however this is possible out of the box via webpack 2
+T> webpack 1 требует специального загрузчика для конвертации `import` из ES2015, однако это возможно прямо из коробки в webpack 2
 
-## Supported Module Types
+## Поддерживаемые типы модулей
 
-webpack supports modules written in a variety of languages and preprocessors, via _loaders_. _Loaders_ describe to webpack **how** to process non-JavaScript _modules_ and include these _dependencies_ into your _bundles_.
-The webpack community has built _loaders_ for a wide variety of popular languages and language processors, including:
+webpack поддерживает модули, написанные на различных языках и препроцессорах, используя _загрузчики_. _Загрузчики_ описывают webpack **как** обрабатывать отличные от JavaScript _модули_ и включать эти _зависимости_ в ваши _бандлы_.
+Сообщество webpack создает _загрузчики_ для множества популярных языков и препроцессоров языков, включая:
 
 * [CoffeeScript](http://coffeescript.org)
 * [TypeScript](https://www.typescriptlang.org)
@@ -44,6 +45,6 @@ The webpack community has built _loaders_ for a wide variety of popular language
 * [Less](http://lesscss.org)
 * [Stylus](http://stylus-lang.com)
 
-And many others! Overall, webpack provides a powerful and rich API for customization that allows one to use webpack for **any stack**, while staying **non-opinionated** about your development, testing, and production workflows.
+И множество других! В целом, webpack предоставляет мощный и богатый API для персонализации, что позволяет использовать webpack для **любого стека** технологий, оставаясь **толерантным** в отношении ваших процессов разработки, тестирования, выпуска в релиз.
 
-For a full list, see [**the list of loaders**](/loaders) or [**write your own**](/api/loaders).
+Для полного списка, смотри [**список загрузчиков**](/loaders) или [**напишите свой собственный**](/api/loaders).
