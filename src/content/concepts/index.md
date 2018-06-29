@@ -1,5 +1,5 @@
 ---
-title: Concepts
+title: Концепции
 sort: 1
 contributors:
   - TheLarkInn

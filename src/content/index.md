@@ -2,7 +2,7 @@
 title: webpack
 ---
 
-## Write your code
+## Напишите свой код
 
 <div class="splash__wrap">
 <div class="splash__left">
@@ -26,7 +26,7 @@ export default function bar() {
 </div>
 
 
-## Bundle with webpack
+## Соберите с webpack
 
 <div class="splash__wrap">
 <div class="splash__left">
@@ -63,7 +63,7 @@ __page.html__
 
 Then run `webpack` on the command-line to create `bundle.js`.
 
-## It's that simple
+## Это так просто
 
 __[Get Started](/guides/getting-started)__ quickly in our __Guides__ section, or dig into the __[Concepts](/concepts)__ section for more high-level information on the core notions behind webpack.
 
